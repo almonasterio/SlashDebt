@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
+import "./NavBar.scss"
 
 import AuthServices from '../../services/auth.services'
 
@@ -30,11 +31,9 @@ class Navigation extends Component {
 
 
         return (
-
-
-            this.props.loggedInUser ?
+                 this.props.loggedInUser ?
                 (
-                    <Navbar bg="dark" expand="lg" variant="dark">
+                    <Navbar className="navbar" expand="lg" variant="dark">
                         <Navbar.Brand href="#home">CoastersApp!</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
@@ -49,7 +48,7 @@ class Navigation extends Component {
                 )
                 :
                 (
-                    <Navbar bg="dark" expand="lg" variant="dark">
+                    <Navbar className="navbar" expand="lg" variant="dark">
                         <Navbar.Brand href="#home">CoastersApp!</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">

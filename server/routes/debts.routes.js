@@ -17,11 +17,11 @@ router.get('/:id/getAllDebts', (req, res, next) => {
     // res.json(allDebts)
 })
 //might not be necessary
-router.get('/getOneDebt/:id', (req, res, next) => {
-    Debt.findById(req.params.id)
-        .then(theDebt => res.json(theDebt))
-        .catch(err => console.log(err))
-})
+// router.get('/getOneDebt/:id', (req, res, next) => {
+//     Debt.findById(req.params.id)
+//         .then(theDebt => res.json(theDebt))
+//         .catch(err => console.log(err))
+// })
 
 router.post('/:id/new', (req, res, next) => {
     console.log(req.body)
