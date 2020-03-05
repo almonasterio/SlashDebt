@@ -2,7 +2,7 @@ const express = require('express');
 const authRoutes = express.Router();
 
 const passport = require('passport');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 
 const User = require('../models/User.model')
 
