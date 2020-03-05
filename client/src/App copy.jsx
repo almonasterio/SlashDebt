@@ -54,26 +54,11 @@ class App extends Component {
           setTheUser={this.setTheUser}
           loggedInUser={this.state.loggedInUser}
         />
-
-        <Doughnut data={data}></Doughnut>
-        <Line data={data2}></Line>
-
         <Switch>
           <Route
             exact
             path="/getAllDebts"
             render={() => <DebtList loggedInUser={this.state.loggedInUser} />}
-          />
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <CoastersList loggedInUser={this.state.loggedInUser} />
-            )}
-          />
-          <Route
-            path="/detalles/:id"
-            render={props => <CoasterDetails {...props} />}
           />
           <Route
             path="/signup"
@@ -82,16 +67,6 @@ class App extends Component {
           <Route
             path="/login"
             render={props => <Login setTheUser={this.setTheUser} {...props} />}
-          />
-          <Route
-            path="/profile"
-            render={() =>
-              this.state.loggedInUser ? (
-                <Profile loggedInUser={this.state.loggedInUser} />
-              ) : (
-                <Redirect to="/" />
-              )
-            }
           />
         </Switch>
       </>

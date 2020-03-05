@@ -1,77 +1,34 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-import DebtServices from '../../../services/debt.services'
+import DebtServices from "../../../services/debt.services";
 
-import { Doughnut } from "react-chartjs-2";
-import { Line } from "react-chartjs-2";
-
-// import CoasterForm from '../coasterForm/CoasterForm'
-// import CoasterCard from './CoasterCard'
-
-// import Container from 'react-bootstrap/Container'
-// import Row from 'react-bootstrap/Row'
-// import Button from 'react-bootstrap/Button'
-// import Modal from 'react-bootstrap/Modal'
+// import { Doughnut } from "react-chartjs-2";
+// import { Line } from "react-chartjs-2";
 
 class DebtList extends Component {
+  state = {
+    debts: []
+  };
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            coasters: [],
-            showmodal: false
-        }
-        this.services = new DebtServices()
-    }
+  // componentDidMount() {
+  //   this.setState({
+  //     debts: this.debtServices.getAllDebts(this.props.loggedInUser.id)
 
-    componentDidMount = () => this.getAllCoasters()
+  //   });
+  // }
+  render() {
+    const { userInSession } = this.props;
+    const debts = userInSession;
 
-    getAllCoasters = () => {
-        this.services.getAllCoasters()
-            .then(allCoasters => this.setState({ coasters: allCoasters }))
-            .catch(err => console.log(err))
-    }
-
-    closeModal = () => this.setState({ showmodal: false })
-    openModal = () => this.setState({ showmodal: true })
-
-    render() {
-
-        return (
-          <Container>
-            <h1>All Debts</h1>
-            <Doughnut data={data}></Doughnut>
-            <Line data={data2}></Line>
-
-            {this.props.loggedInUser && (
-              <Button className="mb-20" variant="dark" onClick={this.openModal}>
-                Crear Montaña rusa
-              </Button>
-            )}
-
-            {this.state.coasters.length ? (
-              <Row>
-                {this.state.coasters.map(elm => (
-                  <CoasterCard key={elm._id} {...elm} />
-                ))}
-              </Row>
-            ) : (
-              <p>CARGANDO...</p>
-            )}
-
-            <Modal show={this.state.showmodal} onHide={this.closeModal}>
-              <Modal.Body>
-                <h3>Nueva montaña rusa</h3>
-                <hr></hr>
-                <CoasterForm
-                  closeModal={this.closeModal}
-                  refreshList={this.getAllCoasters}
-                />
-              </Modal.Body>
-            </Modal>
-          </Container>
-        );
-    }
+    if (userInSession) console.log(this.state.debts);
+    return (
+      <>
+        <div>Hola estas son todas tus deudas</div>
+        {/* <Doughnut data={data}></Doughnut>
+        <Line data={data2}></Line> */}
+      </>
+    );
+  }
 }
 
-export default CoastersList
+export default DebtList;

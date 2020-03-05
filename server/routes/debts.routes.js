@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-// const data = require('../db/db.json')
 const Debt = require('../models/Debt.model')
 const User = require('../models/User.model')
 
@@ -14,7 +13,7 @@ router.get('/:id/getAllDebts', (req, res, next) => {
         })
         .then(allDebts => res.json(allDebts))
         .catch(err => console.log(err))
-    // res.json(allDebts)
+
 })
 //might not be necessary
 // router.get('/getOneDebt/:id', (req, res, next) => {

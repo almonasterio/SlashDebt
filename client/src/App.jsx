@@ -6,12 +6,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 //Import services for authentication
 import AuthServices from "./services/auth.services";
 //Import necessary ui components:
-import NavBar from "./components/ui/NavBar"
+import NavBar from "./components/ui/NavBar.jsx"
 //Import necessary components:
 
-import Signup from "./components/pages/auth/signup/Signup";
+import Signup from "./components/pages/auth/signup/Signup.jsx";
 
-import Login from "./components/pages/auth/login/Login";
+import Login from "./components/pages/auth/login/Login.jsx";
 
 
 
@@ -52,7 +52,6 @@ class App extends Component {
   render() {
     return (
       <>
-        <div>Hola</div>
         <NavBar
           setTheUser={this.setTheUser}
           loggedInUser={this.state.loggedInUser}
@@ -60,7 +59,7 @@ class App extends Component {
         <Switch>
           <Route
             exact
-            path="/signup"
+            path="/allDebts"
             render={() => <Signup setTheUser={this.setTheUser} />}
           />
           <Route
