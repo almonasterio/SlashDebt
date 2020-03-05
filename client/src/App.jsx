@@ -5,17 +5,15 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 //Import services for authentication
 import AuthServices from "./services/auth.services";
+import DebtServices from "./services/debt.services";
 //Import necessary ui components:
-import NavBar from "./components/ui/NavBar.jsx"
+import NavBar from "./components/ui/NavBar.jsx";
 //Import necessary components:
 
 import Signup from "./components/pages/auth/signup/Signup.jsx";
 
 import Login from "./components/pages/auth/login/Login.jsx";
-
-
-
-
+import DebtList from "./components/pages/debtList/DebtList.jsx";
 
 class App extends Component {
   constructor() {
@@ -24,6 +22,7 @@ class App extends Component {
       loggedInUser: false
     };
     this.loginServices = new AuthServices();
+    this.debtServices = new DebtServices();
   }
 
   componentDidUpdate = (prevProps, prevState) =>
@@ -60,7 +59,9 @@ class App extends Component {
           <Route
             exact
             path="/allDebts"
-            render={() => <Signup setTheUser={this.setTheUser} />}
+            render={() => {
+              return <DebtList loggedInUser={this.state.loggedInUser} />;
+            }}
           />
           <Route
             path="/signup"

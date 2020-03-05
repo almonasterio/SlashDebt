@@ -41,6 +41,12 @@ class Navigation extends Component {
                     Home
                   </Link>
                 </Nav.Link>
+                <Nav.Link as="div">
+                  {" "}
+                  <Link to="/allDebts" className="navbar-title">
+                    allDebts
+                  </Link>
+                </Nav.Link>
 
                 <Nav.Link onClick={this.logout}>Log out</Nav.Link>
                 <Nav.Link className="navbar-title">{greeting}</Nav.Link>

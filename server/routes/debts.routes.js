@@ -11,7 +11,7 @@ router.get('/:id/getAllDebts', (req, res, next) => {
             path: 'debts',
             model: 'Debt'
         })
-        .then(allDebts => res.json(allDebts))
+        .then(allDebts => res.json(allDebts[0].debts))
         .catch(err => console.log(err))
 
 })
