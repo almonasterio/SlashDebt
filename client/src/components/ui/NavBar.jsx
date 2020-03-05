@@ -30,8 +30,8 @@ class Navigation extends Component {
         const greeting = this.props.loggedInUser && <>Welcome {this.props.loggedInUser.username}</>
 
         return this.props.loggedInUser ? (
-          <Navbar className="navbar-main">
-            <Navbar.Brand >SlashDebt</Navbar.Brand>
+          <Navbar className="navbar-main" expand="lg" variant="dark">
+            <Navbar.Brand>SlashDebt</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ml-auto">
@@ -42,30 +42,24 @@ class Navigation extends Component {
                   </Link>
                 </Nav.Link>
 
-                <Nav.Link onClick={this.logout}>
-                  Log out
-                </Nav.Link>
-                <Nav.Link className="navbar-title">
-                  {greeting}
-                </Nav.Link>
+                <Nav.Link onClick={this.logout}>Log out</Nav.Link>
+                <Nav.Link className="navbar-title">{greeting}</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
         ) : (
           <Navbar className="navbar" expand="lg" variant="dark">
-            <Navbar.Brand  href="#home">
-              SlashDebt
-            </Navbar.Brand>
+            <Navbar.Brand href="#home">SlashDebt</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ml-auto">
                 <Nav.Link as="div">
                   {" "}
-                  <Link to="/" className="navbar-title" >
+                  <Link to="/" className="navbar-title">
                     Home
                   </Link>
                 </Nav.Link>
-                <Nav.Link className="navbar-title"  as="div">
+                <Nav.Link className="navbar-title" as="div">
                   {" "}
                   <Link to="/signup" className="navbar-title">
                     Signup
