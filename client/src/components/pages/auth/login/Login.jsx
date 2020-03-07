@@ -11,8 +11,8 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: ""
+      username: "bob",
+      password: "bob"
     };
     this.services = new AuthServices();
   }
@@ -33,7 +33,7 @@ class Login extends Component {
           password: ""
         });
         this.props.setTheUser(theLoggedUser);
-        this.props.history.push("/");
+        this.props.history.push("/allDebts");
       })
       .catch(err =>
         console.log({

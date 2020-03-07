@@ -1,7 +1,3 @@
-
-// // Component did Mount
-// this.debtServices.getAllDebts(this.props.loggedInUser.id)
-
 // import React, { Component } from "react";
 
 // import debtServices from "../../../services/debt.services";
