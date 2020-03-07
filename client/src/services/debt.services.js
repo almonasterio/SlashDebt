@@ -9,7 +9,7 @@ export default class Services {
         })
     }
 
-    getAllDebts = (id) => this.service.get(`/${id}/getAllDebts`).then(response => response.data)
+   getAllDebts = (id) => this.service.get(`/${id}/getAllDebts`).then(response => response.data)
     // getAllDebts= user_id => this.service.get(`${user_id}/getAllDebts`).then(response => response.data)
 
     getDebtDetails = id => this.service.get(`/getOneDebt/${id}`).then(response => response.data)

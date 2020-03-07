@@ -22,11 +22,29 @@ router.get('/:id/getAllDebts', (req, res, next) => {
 //         .catch(err => console.log(err))
 // })
 
-router.post('/:id/new', (req, res, next) => {
-    console.log(req.body)
+router.post('/:id/new', (req, res) => {
     Debt.create(req.body)
-        .then(theDebt => res.json(theDebt))
+        .then(theDebt => {
+            User.findByIdAndUpdate(req.params.id, {
+                    $push: {
+                        debts: theDebt._id
+                    }
+                })
+                .then(() => res.json(theDebt))
+        })
         .catch(err => console.log(err))
+})
+
+router.delete(`/:userId/delete/:id`, (req, res) => {
+    Debt.findByIdAndDelete(req.params.id)
+        .then(() => {
+            User.findByIdAndUpdate(req.params.userId, {
+                    $pull: {
+                        debts: req.params.id
+                    }
+                })
+                .then(() => res.send("deleted"))
+        })
 })
 
 

@@ -21,7 +21,7 @@ const debtSchema = new Schema({
 
     isPaid: {
         type: Boolean,
-        default: 'false'
+        default: false
     },
     history: [{
         year: Number,

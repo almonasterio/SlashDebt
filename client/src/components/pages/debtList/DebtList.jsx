@@ -4,8 +4,7 @@ import DebtServices from "../../../services/debt.services";
 import { Doughnut } from "react-chartjs-2";
 import { Line } from "react-chartjs-2";
 import DebtCard from "./DebtCard.jsx";
-
-const totalDebt = 0;
+import "./DebtList.scss";
 
 class DebtList extends Component {
   state = {
@@ -118,9 +117,11 @@ const { lineDebtsLabels, doughnutDebtsLabels, lineDebts, doughnutDebts } = this.
     };
     return (
       <div className="dashboard-container">
-        <div>Hola estas son todas tus deudas</div>;
-        <Doughnut data={dataChartDoughnut}></Doughnut>
-        <Line data={dataLine}></Line>
+        <div className="container-charts">
+          <div>Hola estas son todas tus deudas</div>;
+          <Doughnut data={dataChartDoughnut}></Doughnut>
+          <Line data={dataLine}></Line>
+        </div>
         <div id="debt-cards-container">
           {this.state.debts.map(debt => (
             <DebtCard key={debt._id} {...debt} />
