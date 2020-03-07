@@ -1,0 +1,29 @@
+#card-total {
+    max-width: 600px;
+    min-width: 400px;
+    height: 100px;
+  
+       
+}
+
+.card-header {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding:0 5px 0 10px;
+
+}
+
+.total-card-title {
+     text-align: center;
+     font-size: 40px;
+     padding:0;
+}
+
+.card-text {
+    display:flex;
+    justify-content: space-between;
+    text-align: center;
+    padding:0 10px;
+}

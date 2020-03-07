@@ -1,14 +1,61 @@
 .dashboard-container {
     display:flex;
     flex-direction: row;
+    justify-content: left;
+    // align-items: left;
+    // background-color: coral;
 
 }
 
-.debt-cards-container {
-    max-width: 20vpw;
+#debt-cards-container {
+    max-width: 600px;
+    min-width: 400px;
+  
+    //  background-color: red
+    // .div-doughnut {
+    //     widows: 700px;
+    // }
+}
+
+.container-charts {
+    width: 1000px;
+}
+
+.card-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    h3 {
+        margin-right: 20px;
+    }
+}
+
+.top-chart {
+    display: flex;
+    flex-direction: row;
+    width:70vw;
+}
+
+.div-doughnut {
+    width: 500px;
+}
+
+.card-total {
+
+    min-width: 300px;
+    max-width: 500px;
 
 }
 
-.container-charts{
-
+.add-debt-button {
+    background-color: lightgray;
+    text-align: center;
+    height: 90px;
+    color: black;
+    font-size: 35px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border: black solid 2px;
+    border-radius: 5px;
+    font-weight: bold;
 }

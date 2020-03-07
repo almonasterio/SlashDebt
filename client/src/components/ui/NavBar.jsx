@@ -30,7 +30,9 @@ class Navigation extends Component {
     );
 
     return this.props.loggedInUser ? (
-      <Navbar className="navbar-main" expand="lg" variant="dark">
+
+
+ <Navbar className="navbar-main" expand="lg" variant="dark">
         <Navbar.Brand>SlashDebt</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -44,7 +46,7 @@ class Navigation extends Component {
             <Nav.Link as="div">
               {" "}
               <Link to="/allDebts" className="navbar-title">
-                allDebts
+                Dashboard
               </Link>
             </Nav.Link>
 
@@ -83,6 +85,7 @@ class Navigation extends Component {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+    
     );
   }
 }

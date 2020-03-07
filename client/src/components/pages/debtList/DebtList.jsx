@@ -4,7 +4,10 @@ import DebtServices from "../../../services/debt.services";
 import { Doughnut } from "react-chartjs-2";
 import { Line } from "react-chartjs-2";
 import DebtCard from "./DebtCard.jsx";
+import TotalDebtCard from "./TotalDebtCard.jsx";
+import {InputGroup ,FormControl}from "react-bootstrap";
 import "./DebtList.scss";
+
 
 class DebtList extends Component {
   state = {
@@ -13,7 +16,9 @@ class DebtList extends Component {
     doughnutDebts: [],
     doughnutDebtsLabels: [],
     lineDebts: [],
-    lineDebtsLabels: []
+    lineDebtsLabels: [],
+    totalMinMonthlyPayment: 0,
+    totalDebt: 0
   };
 
   constructor() {
@@ -21,10 +26,12 @@ class DebtList extends Component {
     this.service = new DebtServices();
   }
 
-  componentDidMount() {
+  mounted (){
     this.service.getAllDebts(this.props.loggedInUser._id).then(debts => {
       let doughnutDebts = [];
       let doughnutDebtsLabels = [];
+      let totalDebt=0;
+      let totalMinMonthlyPayment = 0;
 
       let finalDates = {};
       debts.forEach((debt, idx) => {
@@ -43,33 +50,39 @@ class DebtList extends Component {
       });
 
       debts.forEach(debt => {
+        totalDebt+=debt.remaining;
+        totalMinMonthlyPayment += debt.minMonthlyPayment;
         doughnutDebts.push(debt.remaining);
         doughnutDebtsLabels.push(debt.name);
       });
+
       this.setState(
         {
           ...this.state,
           debts,
           doughnutDebts,
           doughnutDebtsLabels,
+          totalDebt,
+          totalMinMonthlyPayment,
           lineDebts: Object.values(finalDates),
           lineDebtsLabels: Object.keys(finalDates)
         },
         () => {
-          console.log(this.state.lineDebtsLabels);
         }
       );
     });
   }
+  componentDidMount() {
+    this.mounted()
+  }
+componentDidUpdate(prevProps, prevState) {
+  if(!prevProps.loggedInUser._id&& this.props.loggedInUser._id){this.mounted()}
+}
 
   render() {
-    console.log(this.state.doughnutDebts);
-    const {
-      lineDebtsLabels,
-      doughnutDebtsLabels,
-      lineDebts,
-      doughnutDebts
-    } = this.state;
+
+const { totalDebt, totalMinMonthlyPayment, lineDebtsLabels, doughnutDebtsLabels, lineDebts, doughnutDebts } = this.state;
+    console.log(totalDebt);
 
     const dataLine = {
       labels: lineDebtsLabels,
@@ -93,7 +106,7 @@ class DebtList extends Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data: lineDebts
+          data:lineDebts
         }
       ]
     };
@@ -122,15 +135,49 @@ class DebtList extends Component {
     };
     return (
       <div className="dashboard-container">
-        <div className="container-charts">
-          <div>Hola estas son todas tus deudas</div>;
-          <Doughnut data={dataChartDoughnut}></Doughnut>
-          <Line data={dataLine}></Line>
-        </div>
         <div id="debt-cards-container">
+          {totalDebt ? (
+            <TotalDebtCard
+              totalDebt={totalDebt}
+              className="card-total"
+              color="danger"
+              text="TOTAL MONTHLY PAYMENTS"
+              totalMinMonthlyPayment={totalMinMonthlyPayment}
+            />
+          ) : (
+            <TotalDebtCard
+              totalDebt={totalDebt}
+              className="card-total"
+              color="success"
+              text="YOU ARE DEBT FREE"
+            />
+          )}
+
+          {/* <InputGroup className="mb-3">
+            <InputGroup.Prepend>
+              <InputGroup.Text>$</InputGroup.Text>
+            </InputGroup.Prepend>
+            <FormControl aria-label="Amount (to the nearest dollar)" />
+            <InputGroup.Append>
+              <InputGroup.Text>.00</InputGroup.Text>
+            </InputGroup.Append>
+          </InputGroup> */}
+
           {this.state.debts.map(debt => (
             <DebtCard key={debt._id} {...debt} />
           ))}
+          <div className="add-debt-button">ADD DEBT</div>
+        </div>
+
+        <div className="container-charts">
+          <div className="top-chart">
+            <Doughnut
+              className="div-doughnut"
+              data={dataChartDoughnut}
+            ></Doughnut>
+          </div>
+
+          <Line data={dataLine}></Line>
         </div>
       </div>
     );

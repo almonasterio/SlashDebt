@@ -12,16 +12,17 @@ const DebtCard =({name, remaining,category,minMonthlyPayment}) => {
       <Accordion defaultActiveKey="0">
         <Card>
           <Card.Header>
-            <Accordion.Toggle as={Button} variant="link" eventKey="0">
-              {name}
+            <Accordion.Toggle className="card-title" as={Button} variant="link" eventKey="0">
+              <h3>{name}</h3>
+              <h4>$ {remaining}</h4>
             </Accordion.Toggle>
           </Card.Header>
-          {/* <Accordion.Collapse eventKey="0"> */}
+          <Accordion.Collapse eventKey="0">
             <Card.Body>{category}</Card.Body>
-            
-            <Card.Body>{remaining}</Card.Body>
+
+            {/* <Card.Body>{remaining}</Card.Body> */}
             {/* <Card.Body>{minMonthlyPayment}</Card.Body> */}
-          {/* </Accordion.Collapse> */}
+          </Accordion.Collapse>
         </Card>
       </Accordion>
     );

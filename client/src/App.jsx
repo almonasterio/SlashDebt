@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 
-import "./App.css";
+import "./App.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 //Import services for authentication
 import AuthServices from "./services/auth.services";
@@ -62,6 +62,10 @@ class App extends Component {
             render={() => {
               return <DebtList loggedInUser={this.state.loggedInUser} />;
             }}
+          />
+          <Route
+            path="/"
+            render={() => <Signup setTheUser={this.setTheUser} />}
           />
           <Route
             path="/signup"
