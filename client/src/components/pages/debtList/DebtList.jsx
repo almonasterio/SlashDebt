@@ -64,7 +64,12 @@ class DebtList extends Component {
 
   render() {
     console.log(this.state.doughnutDebts);
-const { lineDebtsLabels, doughnutDebtsLabels, lineDebts, doughnutDebts } = this.state;
+    const {
+      lineDebtsLabels,
+      doughnutDebtsLabels,
+      lineDebts,
+      doughnutDebts
+    } = this.state;
 
     const dataLine = {
       labels: lineDebtsLabels,
@@ -88,7 +93,7 @@ const { lineDebtsLabels, doughnutDebtsLabels, lineDebts, doughnutDebts } = this.
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data:lineDebts
+          data: lineDebts
         }
       ]
     };
