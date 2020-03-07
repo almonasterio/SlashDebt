@@ -184,10 +184,10 @@ User.deleteMany()
       .then(usersFound => {
         usersFound.forEach((user, idx) => User.findByIdAndUpdate(user._id, {
             $push: {
-              debts: debtsCreated[idx]
+              debts: debtsCreated
             }
           })
-          .then(() => console.log("succesfull connection between debt and user")))
+          .then(() => console.log("successful connection between debt and user")))
       })
     console.log(`${debtsCreated.length} debts created with the following id:`);
     console.log(debtsCreated.map(u => u._id));
