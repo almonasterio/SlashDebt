@@ -3,6 +3,8 @@ import "./NewDebt.scss";
 import FormField from "../../ui/FormField.jsx";
 import DebtServices from "../../../services/debt.services";
 import Button from "../../ui/Button";
+import SelectField from "../../ui/SelectField.jsx";
+
 import { Redirect } from "react-router";
 
 export default class NewDebt extends Component {
@@ -17,7 +19,7 @@ export default class NewDebt extends Component {
     interestRate: 0,
     remaining: 0,
     minMonthlyPayment: 0,
-
+categories: ['Credit Card', 'Car', 'Bank Loan', 'Student Loan', 'Healthcare','Retail'],
     redirect: false
   };
 
@@ -39,7 +41,8 @@ export default class NewDebt extends Component {
   };
 
   render() {
-    const { redirect } = this.state;
+    const { redirect, categories } = this.state;
+    console.log(categories)
 
     if (redirect) {
       return <Redirect to="/allDebts" />;
@@ -60,6 +63,19 @@ export default class NewDebt extends Component {
             type="text"
             placeholder="Entity"
             inputChange={e => this.handleChange(e, "entity")}
+          />
+          <SelectField
+            label="Category"
+            name="category"
+            categories={[
+              "Credit Card",
+              "Car",
+              "Bank Loan",
+              "Student Loan",
+              "Healthcare",
+              "Retail"
+            ]}
+            inputChange={e => this.handleChange(e, "category")}
           />
           <FormField
             label="Interest Rate %"
