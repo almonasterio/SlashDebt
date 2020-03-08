@@ -5,6 +5,7 @@ import { Doughnut } from "react-chartjs-2";
 import { Line } from "react-chartjs-2";
 import DebtCard from "./DebtCard.jsx";
 import TotalDebtCard from "./TotalDebtCard.jsx";
+import Card from "react-bootstrap/Card";
 import { InputGroup, FormControl } from "react-bootstrap";
 import { Redirect } from "react-router";
 import "./DebtList.scss";
@@ -141,9 +142,9 @@ class DebtList extends Component {
         }
       ]
     };
-    return ( 
+    return (
       // {this.props.loggedInUser && <Redirect to="/login" />}
-     
+
       <div className="dashboard-container">
         <div id="debt-cards-container">
           {totalDebt ? (
@@ -176,7 +177,12 @@ class DebtList extends Component {
           {this.state.debts.map(debt => (
             <DebtCard key={debt._id} {...debt} />
           ))}
-          <div className="add-debt-button">ADD DEBT</div>
+          <a href="/new">
+            {/* <div className="add-debt-button">ADD DEBT</div> */}
+            <Card className="add-debt-button" bg="primary" text="black">
+                <h3>ADD DEBT</h3>
+            </Card>
+          </a>
         </div>
 
         <div className="container-charts">

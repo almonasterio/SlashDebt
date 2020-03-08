@@ -13,5 +13,6 @@ export default class Services {
     // getAllDebts= user_id => this.service.get(`${user_id}/getAllDebts`).then(response => response.data)
 
     getDebtDetails = id => this.service.get(`/getOneDebt/${id}`).then(response => response.data)
-    postDebt = debt => this.service.post(`/new`, debt).then(response => response.data)
+    
+    postDebt = (id, debt) => this.service.post(`/${id}/new`, debt).then(response => response.data)
 }
