@@ -5,9 +5,9 @@ import { Doughnut } from "react-chartjs-2";
 import { Line } from "react-chartjs-2";
 import DebtCard from "./DebtCard.jsx";
 import TotalDebtCard from "./TotalDebtCard.jsx";
-import {InputGroup ,FormControl}from "react-bootstrap";
+import { InputGroup, FormControl } from "react-bootstrap";
+import { Redirect } from "react-router";
 import "./DebtList.scss";
-
 
 class DebtList extends Component {
   state = {
@@ -26,11 +26,11 @@ class DebtList extends Component {
     this.service = new DebtServices();
   }
 
-  mounted (){
+  mounted() {
     this.service.getAllDebts(this.props.loggedInUser._id).then(debts => {
       let doughnutDebts = [];
       let doughnutDebtsLabels = [];
-      let totalDebt=0;
+      let totalDebt = 0;
       let totalMinMonthlyPayment = 0;
 
       let finalDates = {};
@@ -50,7 +50,7 @@ class DebtList extends Component {
       });
 
       debts.forEach(debt => {
-        totalDebt+=debt.remaining;
+        totalDebt += debt.remaining;
         totalMinMonthlyPayment += debt.minMonthlyPayment;
         doughnutDebts.push(debt.remaining);
         doughnutDebtsLabels.push(debt.name);
@@ -67,21 +67,29 @@ class DebtList extends Component {
           lineDebts: Object.values(finalDates),
           lineDebtsLabels: Object.keys(finalDates)
         },
-        () => {
-        }
+        () => {}
       );
     });
   }
   componentDidMount() {
-    this.mounted()
+    this.mounted();
   }
-componentDidUpdate(prevProps, prevState) {
-  if(!prevProps.loggedInUser._id&& this.props.loggedInUser._id){this.mounted()}
-}
+  componentDidUpdate(prevProps, prevState) {
+    if (!prevProps.loggedInUser._id && this.props.loggedInUser._id) {
+      this.mounted();
+    }
+
+  }
 
   render() {
-
-const { totalDebt, totalMinMonthlyPayment, lineDebtsLabels, doughnutDebtsLabels, lineDebts, doughnutDebts } = this.state;
+    const {
+      totalDebt,
+      totalMinMonthlyPayment,
+      lineDebtsLabels,
+      doughnutDebtsLabels,
+      lineDebts,
+      doughnutDebts
+    } = this.state;
     console.log(totalDebt);
 
     const dataLine = {
@@ -106,7 +114,7 @@ const { totalDebt, totalMinMonthlyPayment, lineDebtsLabels, doughnutDebtsLabels,
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data:lineDebts
+          data: lineDebts
         }
       ]
     };
@@ -133,7 +141,9 @@ const { totalDebt, totalMinMonthlyPayment, lineDebtsLabels, doughnutDebtsLabels,
         }
       ]
     };
-    return (
+    return ( 
+      // {this.props.loggedInUser && <Redirect to="/login" />}
+     
       <div className="dashboard-container">
         <div id="debt-cards-container">
           {totalDebt ? (
@@ -153,7 +163,7 @@ const { totalDebt, totalMinMonthlyPayment, lineDebtsLabels, doughnutDebtsLabels,
             />
           )}
 
-          {/* <InputGroup className="mb-3">
+          <InputGroup className="mb-3">
             <InputGroup.Prepend>
               <InputGroup.Text>$</InputGroup.Text>
             </InputGroup.Prepend>
@@ -161,7 +171,7 @@ const { totalDebt, totalMinMonthlyPayment, lineDebtsLabels, doughnutDebtsLabels,
             <InputGroup.Append>
               <InputGroup.Text>.00</InputGroup.Text>
             </InputGroup.Append>
-          </InputGroup> */}
+          </InputGroup>
 
           {this.state.debts.map(debt => (
             <DebtCard key={debt._id} {...debt} />

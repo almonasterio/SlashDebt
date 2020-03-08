@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import "./Login.scss"
+import "./Login.scss";
 
 import AuthServices from "../../../../services/auth.services";
 
@@ -29,11 +29,12 @@ class Login extends Component {
       .login(this.state)
       .then(theLoggedUser => {
         this.setState({
-          username: "",
-          password: ""
+          username: "bob",
+          password: "bob"
         });
         this.props.setTheUser(theLoggedUser);
         this.props.history.push("/allDebts");
+       
       })
       .catch(err =>
         console.log({

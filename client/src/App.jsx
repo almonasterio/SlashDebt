@@ -14,6 +14,7 @@ import Signup from "./components/pages/auth/signup/Signup.jsx";
 
 import Login from "./components/pages/auth/login/Login.jsx";
 import DebtList from "./components/pages/debtList/DebtList.jsx";
+import Home from "./components/pages/Home/Home.jsx";
 
 class App extends Component {
   constructor() {
@@ -57,23 +58,25 @@ class App extends Component {
         />
         <Switch>
           <Route
-            exact
-            path="/allDebts"
-            render={() => {
-              return <DebtList loggedInUser={this.state.loggedInUser} />;
-            }}
-          />
-          <Route
-            path="/"
-            render={() => <Signup setTheUser={this.setTheUser} />}
+            path="/login"
+            render={props => <Login setTheUser={this.setTheUser} {...props} />}
           />
           <Route
             path="/signup"
             render={() => <Signup setTheUser={this.setTheUser} />}
           />
+          {this.state.loggedInUser && (
+            <Route
+              exact
+              path="/allDebts"
+              render={() => {
+                return <DebtList loggedInUser={this.state.loggedInUser} />;
+              }}
+            />
+          )}
           <Route
-            path="/login"
-            render={props => <Login setTheUser={this.setTheUser} {...props} />}
+            path="/"
+            render={() => <Home setTheUser={this.setTheUser} />}
           />
         </Switch>
       </>

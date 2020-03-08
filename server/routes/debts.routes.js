@@ -35,12 +35,12 @@ router.post('/:id/new', (req, res) => {
         .catch(err => console.log(err))
 })
 
-router.post('/:id/edit', (req,res) => {
-Debt.findByIdAndUpdate(req.params.id, req.body,{
-    new: true
-})
-.then(theDebt => res.json(theDebt))
-.catch(err => console.log(err))
+router.post('/:id/edit', (req, res) => {
+    Debt.findByIdAndUpdate(req.params.id, req.body, {
+            new: true
+        })
+        .then(theDebt => res.json(theDebt))
+        .catch(err => console.log(err))
 
 })
 
