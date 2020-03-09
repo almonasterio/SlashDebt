@@ -190,6 +190,7 @@ class DebtList extends Component {
         </div>
 
         <div className="container-charts">
+        
           <div className="top-chart">
             <Doughnut
               className="div-doughnut"

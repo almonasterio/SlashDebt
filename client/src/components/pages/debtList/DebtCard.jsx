@@ -34,6 +34,9 @@ const DebtCard = props => {
           >
             <h3>{name}</h3>
             <h4>$ {remaining}</h4>
+            <button type="submit" onClick={e => _handleForm(e)}>
+              Delete
+            </button>
           </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey="1">
@@ -43,9 +46,6 @@ const DebtCard = props => {
           {/* <Card.Body>{minMonthlyPayment}</Card.Body> */}
         </Accordion.Collapse>
       </Card>
-      <button type="submit" onClick={e => _handleForm(e)}>
-        Delete
-      </button>
     </Accordion>
   );
 };
