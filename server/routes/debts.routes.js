@@ -34,6 +34,7 @@ router.post('/:id/new', (req, res) => {
                 })
                 .then(() => res.json(theDebt))
         })
+        .then(()=> res.json({deleted:"true"}))
         .catch(err => console.log(err))
 })
 
@@ -47,22 +48,26 @@ router.post('/:id/edit', (req, res) => {
 })
 
 router.delete(`/:userId/delete/:id`, (req, res) => {
-            Debt.findByIdAndDelete(req.params.id)
-                .then(() => {
-                    User.findByIdAndUpdate(req.params.userId, {
-                            $pull: {
-                                debts: req.params.id
-                            }
-                        })
-                        .then(() => res.json({
-                            deleted: true
-                        }))
+    Debt.findByIdAndDelete(req.params.id)
+        .then(() => {
+            console.log("deleting....")
+            User.findByIdAndUpdate(req.params.userId, {
+                    $pull: {
+                        debts: req.params.id
+                    }
                 })
                 .then(() => res.json({
-                        deleted: true
-                    }))
-                })
+                    deleted: true
+                }))
+        })
+        .then(() => {
+            console.log("succesfully deleted.")
+            res.json({
+                deleted: true
+            })
+        })
+})
 
 
 
-        module.exports = router
+module.exports = router
