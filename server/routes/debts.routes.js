@@ -25,7 +25,12 @@ router.get('/:id/getAllDebts', (req, res, next) => {
 router.post('/:id/new', (req, res) => {
     console.log("req.body");
     console.log(req.body);
-    Debt.create(req.body)
+    Debt.create(req.body, {
+            writeConcern: {
+                w: "majority",
+                wtimeout: 5000
+            }
+        })
         .then(theDebt => {
             User.findByIdAndUpdate(req.params.id, {
                     $push: {
@@ -34,7 +39,9 @@ router.post('/:id/new', (req, res) => {
                 })
                 .then(() => res.json(theDebt))
         })
-        .then(()=> res.json({deleted:"true"}))
+        .then(() => res.json({
+            deleted: "true"
+        }))
         .catch(err => console.log(err))
 })
 
