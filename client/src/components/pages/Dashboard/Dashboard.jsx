@@ -10,7 +10,27 @@ class Dashboard extends Component {
   constructor() {
     super();
     this.state = {};
+
+
+
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   render() {
     return (
       <div className="container-alldebts">
@@ -33,7 +53,5 @@ class Dashboard extends Component {
   }
 }
 
-{
-  /*(props) => <DebtDetails  {...props} />; */
-}
+
 export default Dashboard;

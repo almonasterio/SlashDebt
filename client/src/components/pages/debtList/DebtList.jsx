@@ -6,6 +6,7 @@ import DebtCard from "./DebtCard.jsx";
 import TotalDebtCard from "./TotalDebtCard.jsx";
 import Card from "react-bootstrap/Card";
 import { InputGroup, FormControl } from "react-bootstrap";
+
 import { Redirect } from "react-router";
 import "./DebtList.scss";
 
@@ -104,11 +105,10 @@ class DebtList extends Component {
           {this.state.debts.map(debt => (
             <DebtCard
               key={debt._id}
-              userID={this.props.loggedInUser._id}
+              userId={this.props.loggedInUser._id}
               {...debt}
               deleteButton={this.handleRemove}
            ></DebtCard>
-            //Meter Link
           ))}
        
           

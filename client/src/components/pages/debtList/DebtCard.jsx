@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./DebtCard.scss";
 import { Link } from "react-router-dom";
-import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Accordion from "react-bootstrap/Accordion";
