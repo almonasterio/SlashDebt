@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 //const favicon = require('serve-favicon');
@@ -8,7 +10,6 @@ const express = require('express')
 const cors = require('cors')
 
 
-
 module.exports = app => {
 
     const app_name = require('../package.json').name;
@@ -17,7 +18,9 @@ module.exports = app => {
     // Middleware Setup
     app.use(logger('dev'));
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.urlencoded({
+        extended: false
+    }));
     app.use(cookieParser());
 
     // Express View engine setup
@@ -29,13 +32,13 @@ module.exports = app => {
 
 
 
-    const whitelist = ['http://localhost:3000']
+    const whitelist = process.env.WHITELIST
     const corsOptions = {
         origin: (origin, cb) => {
             const originWhitelisted = whitelist.includes(origin)
             cb(null, originWhitelisted)
         },
-        credentials: true        // RUTAS PERSISTENTES
+        credentials: true // RUTAS PERSISTENTES
     }
     app.use(cors(corsOptions))
 
