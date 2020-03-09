@@ -2,24 +2,14 @@
     display: flex;
     flex-direction: row;
     justify-content: left;
-    // align-items: left;
-    // background-color: coral;
-
 }
 
 #debt-cards-container {
     max-width: 600px;
     min-width: 400px;
-
-    //  background-color: red
-    // .div-doughnut {
-    //     widows: 700px;
-    // }
 }
 
-.container-charts {
-    width: 1000px;
-}
+
 
 .card-title {
     display: flex;
@@ -32,15 +22,6 @@
     }
 }
 
-.top-chart {
-    display: flex;
-    flex-direction: row;
-    width: 70vw;
-}
-
-.div-doughnut {
-    width: 500px;
-}
 
 .card-total {
 
@@ -49,28 +30,6 @@
 
 }
 
-
-// .add-debt {
-//     display: block;
-//     border-style: solid;
-//     border-color: #bbb #888 #666 #aaa;
-//     border-width: 3px 4px 4px 3px;
-//     width: 9em;
-//     height: 2em;
-//     background: #ccc;
-//     color: #333;
-//     line-height: 2;
-//     text-align: center;
-//     text-decoration: none;
-//     font-weight: 900;
-
-//     .hover {
-//         border-color: #666 #aaa #bbb #888;
-//         border-width: 4px 3px 3px 4px;
-//         color: #000;
-
-//     }
-// }
 
 .add-debt-button:hover {
     text-decoration: none;
@@ -83,8 +42,8 @@
 .add-debt-button {
     text-decoration: none;
     border-style: solid;
-     font-weight: 900;
-padding-top: 22px;
+    font-weight: 900;
+    padding-top: 22px;
     border-color: #bbb #888 #666 #aaa;
     border-width: 3px 4px 4px 3px;
     background-color: lightgray;

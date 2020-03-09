@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 
 import DebtServices from "../../../services/debt.services";
-import { Doughnut } from "react-chartjs-2";
-import { Line } from "react-chartjs-2";
+
 import DebtCard from "./DebtCard.jsx";
 import TotalDebtCard from "./TotalDebtCard.jsx";
 import Card from "react-bootstrap/Card";
@@ -13,15 +12,10 @@ import "./DebtList.scss";
 class DebtList extends Component {
   state = {
     debts: [],
-    loggedInUser: null,
-    doughnutDebts: [],
-    doughnutDebtsLabels: [],
-    lineDebts: [],
-    lineDebtsLabels: [],
+    // loggedInUser: null,
     totalMinMonthlyPayment: 0,
     totalDebt: 0
   };
-
   constructor() {
     super();
     this.service = new DebtServices();
@@ -29,44 +23,21 @@ class DebtList extends Component {
 
   mounted() {
     this.service.getAllDebts(this.props.loggedInUser._id).then(debts => {
-      let doughnutDebts = [];
-      let doughnutDebtsLabels = [];
+
       let totalDebt = 0;
       let totalMinMonthlyPayment = 0;
-
-      let finalDates = {};
-      debts.forEach((debt, idx) => {
-        debt.history.forEach((year, idx) => {
-          let monthsCollection = year.amount;
-          let theYear = year.year;
-          Object.keys(monthsCollection).forEach((month, idx) => {
-            let finalMonth = month + year.year;
-            let finalAmount = finalDates[finalMonth];
-            let euros = monthsCollection[month];
-            finalAmount
-              ? (finalDates[finalMonth] = +finalDates[finalMonth] + euros)
-              : (finalDates[finalMonth] = "0");
-          });
-        });
-      });
 
       debts.forEach(debt => {
         totalDebt += debt.remaining;
         totalMinMonthlyPayment += debt.minMonthlyPayment;
-        doughnutDebts.push(debt.remaining);
-        doughnutDebtsLabels.push(debt.name);
       });
 
       this.setState(
         {
           ...this.state,
           debts,
-          doughnutDebts,
-          doughnutDebtsLabels,
           totalDebt,
           totalMinMonthlyPayment,
-          lineDebts: Object.values(finalDates),
-          lineDebtsLabels: Object.keys(finalDates)
         },
         () => {}
       );
@@ -90,62 +61,9 @@ class DebtList extends Component {
     const {
       totalDebt,
       totalMinMonthlyPayment,
-      lineDebtsLabels,
-      doughnutDebtsLabels,
-      lineDebts,
-      doughnutDebts
     } = this.state;
-    console.log(totalDebt);
-
-    const dataLine = {
-      labels: lineDebtsLabels,
-      datasets: [
-        {
-          label: "My First dataset",
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: "rgba(75,192,192,0.4)",
-          borderColor: "rgba(75,192,192,1)",
-          borderCapStyle: "butt",
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: "miter",
-          pointBorderColor: "rgba(75,192,192,1)",
-          pointBackgroundColor: "#fff",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "rgba(75,192,192,1)",
-          pointHoverBorderColor: "rgba(220,220,220,1)",
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: lineDebts
-        }
-      ]
-    };
-
-    const dataChartDoughnut = {
-      labels: doughnutDebtsLabels,
-      datasets: [
-        {
-          data: doughnutDebts,
-          backgroundColor: [
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56",
-            "#009018",
-            "#00c5ff"
-          ],
-          hoverBackgroundColor: [
-            "#d4395a",
-            "#3791ce",
-            "#dbaa31",
-            "#18872a",
-            "#0ca5d2"
-          ]
-        }
-      ]
-    };
+  
+   
     return (
       // {this.props.loggedInUser && <Redirect to="/login" />}
 
@@ -167,6 +85,11 @@ class DebtList extends Component {
               text="YOU ARE DEBT FREE"
             />
           )}
+          <a href="/new">
+            <Card className="add-debt-button" bg="primary" text="black">
+              <h3>ADD DEBT</h3>
+            </Card>
+          </a>
 
           <InputGroup className="mb-3">
             <InputGroup.Prepend>
@@ -179,26 +102,16 @@ class DebtList extends Component {
           </InputGroup>
 
           {this.state.debts.map(debt => (
-            <DebtCard key={debt._id} userID={this.props.loggedInUser._id} {...debt} deleteButton={this.handleRemove}/>
+            <DebtCard
+              key={debt._id}
+              userID={this.props.loggedInUser._id}
+              {...debt}
+              deleteButton={this.handleRemove}
+           ></DebtCard>
+            //Meter Link
           ))}
-          <a href="/new">
-            {/* <div className="add-debt-button">ADD DEBT</div> */}
-            <Card className="add-debt-button" bg="primary" text="black">
-              <h3>ADD DEBT</h3>
-            </Card>
-          </a>
-        </div>
-
-        <div className="container-charts">
-        
-          <div className="top-chart">
-            <Doughnut
-              className="div-doughnut"
-              data={dataChartDoughnut}
-            ></Doughnut>
-          </div>
-
-          <Line data={dataLine}></Line>
+       
+          
         </div>
       </div>
     );

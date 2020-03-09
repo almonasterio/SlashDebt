@@ -11,17 +11,26 @@ export default class NewDebt extends Component {
   constructor() {
     super();
     this.service = new DebtServices();
+     
+    this.state = {
+       name: "Prueba",
+       entity: "Prueba",
+       category: "Credit Card",
+       interestRate: 0,
+       remaining: 1000,
+       minMonthlyPayment: 100,
+       categories: [
+         "Credit Card",
+         "Car",
+         "Bank Loan",
+         "Student Loan",
+         "Healthcare",
+         "Retail"
+       ],
+       redirect: false
+     };
   }
-  state = {
-    name: "",
-    entity: "",
-    category: "Credit Card",
-    interestRate: 0,
-    remaining: 0,
-    minMonthlyPayment: 0,
-categories: ['Credit Card', 'Car', 'Bank Loan', 'Student Loan', 'Healthcare','Retail'],
-    redirect: false
-  };
+ 
 
   handleChange = (e, field) => {
     this.setState({
@@ -42,7 +51,7 @@ categories: ['Credit Card', 'Car', 'Bank Loan', 'Student Loan', 'Healthcare','Re
 
   render() {
     const { redirect, categories } = this.state;
-    console.log(categories)
+    console.log(this.state.name)
 
     if (redirect) {
       return <Redirect to="/allDebts" />;
@@ -55,6 +64,7 @@ categories: ['Credit Card', 'Car', 'Bank Loan', 'Student Loan', 'Healthcare','Re
             name="name"
             type="text"
             placeholder="Debt Name"
+            value={this.state.name}
             inputChange={e => this.handleChange(e, "name")}
           />
           <FormField

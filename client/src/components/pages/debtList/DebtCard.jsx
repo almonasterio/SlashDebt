@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./DebtCard.scss";
-
+import { Link } from "react-router-dom";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -45,6 +45,21 @@ const DebtCard = props => {
           {/* <Card.Body>{remaining}</Card.Body> */}
           {/* <Card.Body>{minMonthlyPayment}</Card.Body> */}
         </Accordion.Collapse>
+        <Link
+          to={{
+            pathname: "/allDebts/detail",
+            state: {
+              name,
+              remaining,
+              category,
+              userId,
+              _id,
+              minMonthlyPayment
+            }
+          }}
+        >
+          View Details
+        </Link>
       </Card>
     </Accordion>
   );

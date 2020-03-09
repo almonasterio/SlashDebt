@@ -25,12 +25,7 @@ router.get('/:id/getAllDebts', (req, res, next) => {
 router.post('/:id/new', (req, res) => {
     console.log("req.body");
     console.log(req.body);
-    Debt.create(req.body, {
-            writeConcern: {
-                w: "majority",
-                wtimeout: 5000
-            }
-        })
+    Debt.create(req.body)
         .then(theDebt => {
             User.findByIdAndUpdate(req.params.id, {
                     $push: {
