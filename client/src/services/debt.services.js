@@ -15,4 +15,6 @@ export default class Services {
     getDebtDetails = id => this.service.get(`/getOneDebt/${id}`).then(response => response.data)
     
     postDebt = (id, debt) => this.service.post(`/${id}/new`, debt).then(response => response.data)
+
+    deleteDebt = (id, debtId) => this.service.delete(`/${id}/delete/${debtId}`).then(response => response.data)
 }

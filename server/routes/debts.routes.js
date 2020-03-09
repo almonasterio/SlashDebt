@@ -23,8 +23,8 @@ router.get('/:id/getAllDebts', (req, res, next) => {
 // })
 
 router.post('/:id/new', (req, res) => {
-       console.log("req.body");
-      console.log(req.body);
+    console.log("req.body");
+    console.log(req.body);
     Debt.create(req.body)
         .then(theDebt => {
             User.findByIdAndUpdate(req.params.id, {
@@ -47,17 +47,22 @@ router.post('/:id/edit', (req, res) => {
 })
 
 router.delete(`/:userId/delete/:id`, (req, res) => {
-    Debt.findByIdAndDelete(req.params.id)
-        .then(() => {
-            User.findByIdAndUpdate(req.params.userId, {
-                    $pull: {
-                        debts: req.params.id
-                    }
+            Debt.findByIdAndDelete(req.params.id)
+                .then(() => {
+                    User.findByIdAndUpdate(req.params.userId, {
+                            $pull: {
+                                debts: req.params.id
+                            }
+                        })
+                        .then(() => res.json({
+                            deleted: true
+                        }))
                 })
-                .then(() => res.send("deleted"))
-        })
-})
+                .then(() => res.json({
+                        deleted: true
+                    }))
+                })
 
 
 
-module.exports = router
+        module.exports = router

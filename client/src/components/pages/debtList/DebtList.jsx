@@ -79,7 +79,11 @@ class DebtList extends Component {
     if (!prevProps.loggedInUser._id && this.props.loggedInUser._id) {
       this.mounted();
     }
+  }
 
+  handleRemove = (userId, debtId) => {
+    this.service.deleteDebt(userId,debtId)
+    .then(()=>this.mounted())
   }
 
   render() {
@@ -175,12 +179,12 @@ class DebtList extends Component {
           </InputGroup>
 
           {this.state.debts.map(debt => (
-            <DebtCard key={debt._id} {...debt} />
+            <DebtCard key={debt._id} userID={this.props.loggedInUser._id} {...debt} deleteButton={this.handleRemove}/>
           ))}
           <a href="/new">
             {/* <div className="add-debt-button">ADD DEBT</div> */}
             <Card className="add-debt-button" bg="primary" text="black">
-                <h3>ADD DEBT</h3>
+              <h3>ADD DEBT</h3>
             </Card>
           </a>
         </div>
