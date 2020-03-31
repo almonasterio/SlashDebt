@@ -21,10 +21,9 @@ SlashDebt helps the user prioritize its debts and offers an strategy following s
 
 Some of the functionalities are:
 - Single-Page-Application to oversee all your debts using charts and graphs.
-- Easy addition of new debts using a toggeable built-in form.
 - Sorting debts based on interest rate and prioritizing those under $1000 following Dave Ramsey recommendations.
-- Forecasting the debt-free date based on the amount that the user can pay.
-- Easy deletion of the debts by the user.
+- Forecasting the payoff date based on estimated monthly payment.
+- Easy deletion and addition of new debts using a toggeable built-in form.
 
 
 ### Thank you:
