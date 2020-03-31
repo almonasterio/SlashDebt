@@ -4,7 +4,7 @@
   A Debt Management Tool
 </h2>
 
-SlashDebt — It's a web application for managing personal debts built for my capstone project during the Full Stack Web Development Bootcamp at [Ironhack Madrid](https://www.ironhack.com/).
+[SlashDebt](https://slashdebt.herokuapp.com/) — It's a web application for managing personal debts built for my capstone project during the Full Stack Web Development Bootcamp at [Ironhack Madrid](https://www.ironhack.com/).
 
 <p align="center"><img src="https://res.cloudinary.com/dl5ssmoat/image/upload/v1585672124/Screen_Shot_2020-03-31_at_11.21.46_AM_dkmdpp.png" width="600"/></p>
 
